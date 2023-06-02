@@ -22,7 +22,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SchedulerEvent__c.RecurrenceException__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SchedulerEvent__c.RecurrenceRule__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SchedulerEvent__c.Recurrence_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

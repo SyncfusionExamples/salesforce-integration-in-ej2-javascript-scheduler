@@ -17,7 +17,9 @@ function getEventsData(eventData) {
         StartTime: a.Start_Time__c,
         EndTime: a.End_Time__c,
         IsAllDay: a.IsAllDay__c,
-        RecurrenceRule: a.RecurrenceRule__c
+        RecurrenceRule: a.RecurrenceRule__c,
+        RecurrenceID: a.Recurrence_Id__c,
+        RecurrenceException: a.RecurrenceException__c
     }));
  
     return data;
@@ -58,10 +60,10 @@ export default class Scheduler extends LightningElement {
         root.style.height = this.height + "px";
         const scheduleOptions = {
             height: this.height + "px",
-            selectedDate: new Date(2021, 0, 10),
+            selectedDate: new Date(),
             actionComplete: function (args) {
                 //To perform CRUD in salesforce backend
-                if (args.requestType === 'eventCreated' && args.addedRecords && args.addedRecords.length > 0) {
+                if (args.addedRecords && args.addedRecords.length > 0) {
                     var data = args.addedRecords[0];
                     var insert = {
                         apiName: "SchedulerEvent__c",
@@ -72,6 +74,8 @@ export default class Scheduler extends LightningElement {
                             End_Time__c: data.EndTime,
                             IsAllDay__c: data.IsAllDay,
                             RecurrenceRule__c: data.RecurrenceRule,
+                            Recurrence_Id__c: data.RecurrenceID,
+                            RecurrenceException__c: data.RecurrenceException
                         }
                     };
                     createRecord(insert).then((res) => {
@@ -83,7 +87,7 @@ export default class Scheduler extends LightningElement {
                         return { tid: res.id, ...res };
                     });
                 }
-                if (args.requestType === 'eventChanged' && args.changedRecords && args.changedRecords.length > 0) {
+                if (args.changedRecords && args.changedRecords.length > 0) {
                     var data = args.changedRecords[0];
                     var update = {
                         fields: {
@@ -94,11 +98,13 @@ export default class Scheduler extends LightningElement {
                             End_Time__c: data.EndTime,
                             IsAllDay__c: data.IsAllDay,
                             RecurrenceRule__c: data.RecurrenceRule,
+                            RecurrenceException__c: data.RecurrenceException,
+                            Recurrence_Id__c: data.RecurrenceID
                         }
                     };
                     updateRecord(update).then(() => ({}));
                 }
-                if (args.requestType === 'eventRemoved' && args.deletedRecords && args.deletedRecords.length > 0) {
+                if (args.deletedRecords && args.deletedRecords.length > 0) {
                     args.deletedRecords.forEach(event => {
                         deleteRecord(event.Id).then(() => ({}));
                     });
