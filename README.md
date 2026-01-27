@@ -20,17 +20,20 @@
 
 2.Open salesforce\scheduler-salesforce-app\sfdx-project.json file and update the `sfdcLoginUrl` with domain url, which is get from salesforce Setup > My Domain
 
-3.In the cloned project create scratch org using below command
+3.Authorize the DevHub in the project 
+>sf org login web --set-default-dev-hub
 
-> sfdx org:create:scratch -f config/project-scratch-def.json
+4.In the cloned project create scratch org using below command
 
-4.Open your scratch org in brower using below cmd
+> sf org:create:scratch -f config/project-scratch-def.json
 
-> sfdx org:open -o {scratch org user name}
+5.Open your scratch org in brower using below cmd
 
-4.Deploy the project using below command
+> sf org:open -o {scratch org user name}
 
-> sfdx project:deploy:start -o {scratch org use name}
+6.Deploy the project using below command
+
+> sf project:deploy:start -o {scratch org use name}
 
 
 ### Scheduler Integration
@@ -38,3 +41,11 @@
 1.In scratch org url, click app launcher icon and search for `SyncfuionScheduler`.
 
 2.Select syncfusion scheduler to load the scheduler as custom component in salesforce 
+
+### Output Preview
+
+![Preview](image.png)
+
+### Troubleshooting 
+
+**License banner:** Obtain and register a Syncfusion license key [Link](https://ej2.syncfusion.com/angular/documentation/licensing/overview).
