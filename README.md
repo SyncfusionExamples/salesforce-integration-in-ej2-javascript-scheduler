@@ -1,6 +1,6 @@
-# salesforce-integration-in-ej2-javascript-scheduler
+# JavaScript Scheduler Integration with Salesforce Platform
 
-A complete integration of Syncfusion EJ2 JavaScript Scheduler with Salesforce, enabling event management and synchronization within the Salesforce ecosystem as a custom component.
+A complete integration of [JavaScript Scheduler](https://www.syncfusion.com/javascript-ui-controls/js-scheduler) with Salesforce, enabling event management and synchronization within the Salesforce ecosystem as a custom component.
 
 ### Prerequisites
 
